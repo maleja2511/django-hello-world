@@ -78,9 +78,12 @@ WSGI_APPLICATION = 'NeivaNet.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'djongo',
+        'NAME': 'mydatabase',
+        'CLIENT': {
+            'host': 'mongodb+srv://anderson:anderson@cluster0.hykao.mongodb.net/?retryWrites=true&w=majority',
+ }
+}
 }
 
 
