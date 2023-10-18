@@ -11,10 +11,12 @@
       "dest": "NeivaNet/wsgi.py"
     }
   ],
-  "functions": {
-    "migrate": {
-      "handler": "NeivaNet/wsgi.migrate",
-      "memory":512
-}
-}
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "NeivaNet.settings"
+  },
+  "build": {
+    "env": {
+      "MIGRATE": "1"
+    }
+  }
 }
