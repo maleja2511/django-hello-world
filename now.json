@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "NeivaNet/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "NeivaNet/wsgi.py"
+      }
+    ],
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "NeivaNet.settings"
+    },
+    "build": {
+      "env": {
+        "MIGRATE": "1"
+      }
+    },
+    "functions": {
+      "migrate": {
+        "handler": "NeivaNet/wsgi.migrate",
+        "memory":512 
+  }
+  }
+  }

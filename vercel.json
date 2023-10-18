@@ -10,5 +10,11 @@
       "src": "/(.*)",
       "dest": "NeivaNet/wsgi.py"
     }
-  ]
+  ],
+  "functions": {
+    "migrate": {
+      "handler": "NeivaNet/wsgi.migrate",
+      "memory":512
+}
+}
 }
