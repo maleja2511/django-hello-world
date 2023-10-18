@@ -1,106 +1,57 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango&demo-title=Django%20%2B%20Vercel&demo-description=Use%20Django%204%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fdjango-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994241/random/django.png)
 
-# Django + Vercel
+# NeivaNet
 
-This example shows how to use Django 4 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+## Descripción
 
-## Demo
+NeivaNet es un proyecto de red social centrado en la ciudad de Neiva. Esta plataforma tiene como objetivo proporcionar un espacio para quejas, comentarios y participación en servicios públicos. A través de NeivaNet, los ciudadanos pueden expresar sus opiniones y preocupaciones, así como colaborar para mejorar la comunidad.
 
-https://django-template.vercel.app/
+## Instrucciones para ejecutar el proyecto
 
-## How it Works
+### Requisitos previos
 
-Our Django application, `example` is configured as an installed application in `vercel_app/settings.py`:
+- Python 3.11.5
+- pip
+- Virtualenv
 
-```python
-# vercel_app/settings.py
-INSTALLED_APPS = [
-    # ...
-    'example',
-]
-```
+### Pasos
 
-We allow "\*.vercel.app" subdomains in `ALLOWED_HOSTS`, in addition to 127.0.0.1:
+1. **Clonar el Repositorio**
 
-```python
-# vercel_app/settings.py
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
-```
+    ```bash
+    git clone https://github.com/tu_usuario/NeivaNet.git
+    cd NeivaNet
+    ```
 
-The `wsgi` module must use a public variable named `app` to expose the WSGI application:
+2. **Crear un entorno virtual y activarlo**
 
-```python
-# vercel_app/wsgi.py
-app = get_wsgi_application()
-```
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # En Windows use `venv\Scripts\activate`
+    ```
 
-The corresponding `WSGI_APPLICATION` setting is configured to use the `app` variable from the `vercel_app.wsgi` module:
+3. **Instalar las dependencias**
 
-```python
-# vercel_app/settings.py
-WSGI_APPLICATION = 'vercel_app.wsgi.app'
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-There is a single view which renders the current time in `example/views.py`:
+4. **Realizar las migraciones de la base de datos**
 
-```python
-# example/views.py
-from datetime import datetime
+    ```bash
+    python manage.py migrate
+    ```
 
-from django.http import HttpResponse
+5. **Ejecutar el servidor de desarrollo de Django**
 
+    ```bash
+    python manage.py runserver
+    ```
 
-def index(request):
-    now = datetime.now()
-    html = f'''
-    <html>
-        <body>
-            <h1>Hello from Vercel!</h1>
-            <p>The current time is { now }.</p>
-        </body>
-    </html>
-    '''
-    return HttpResponse(html)
-```
+Ahora, abre tu navegador y navega a `http://127.0.0.1:8000/` para ver el proyecto en acción.
 
-This view is exposed a URL through `example/urls.py`:
+## Contribución
 
-```python
-# example/urls.py
-from django.urls import path
-
-from example.views import index
+Siéntete libre de contribuir al proyecto. Para cualquier bug, pregunta o sugerencia, puedes abrir un issue.
 
 
-urlpatterns = [
-    path('', index),
-]
-```
 
-Finally, it's made accessible to the Django server inside `vercel_app/urls.py`:
-
-```python
-# vercel_app/urls.py
-from django.urls import path, include
-
-urlpatterns = [
-    ...
-    path('', include('example.urls')),
-]
-```
-
-This example uses the Web Server Gateway Interface (WSGI) with Django to enable handling requests on Vercel with Serverless Functions.
-
-## Running Locally
-
-```bash
-python manage.py runserver
-```
-
-Your Django application is now available at `http://localhost:8000`.
-
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fdjango&demo-title=Django%20%2B%20Vercel&demo-description=Use%20Django%204%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fdjango-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994241/random/django.png)
